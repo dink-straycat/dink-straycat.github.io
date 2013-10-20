@@ -52,8 +52,10 @@ Windows 8.1のHyper-VにFedora19を入れる作業ログ。
         NETMASK=255.255.255.0
         IPADDR=***ひみつ***
         USERCTL=no
+        DNS1=***ひみつ***
 
     既存のに書いてあった `BOOTPROTO="dhcp"` はコメントアウト。
+    ファイルを書き換えると、NetworkManagerが勝手に再読み込みして即座に設定を反映してくれました。
 
 1. sshの公開鍵を設定、ログインできることを確認した上で、sshdはパスワード認証を不許可に。
 
