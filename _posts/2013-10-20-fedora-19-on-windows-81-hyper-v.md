@@ -9,6 +9,9 @@ tags: [hyper-v, fedora]
 
 Windows 8.1のHyper-VにFedora19を入れる作業ログ。
 
+インストール
+------------
+
 1. Hyper-Vで仮想マシンを新規作成しようとしたら、第1世代と第2世代を選択するダイアログが。
 こんなダイアログはWindows8のときにはなかったはず。
 せっかくなので第2世代を選んでみる。
@@ -29,8 +32,29 @@ Windows 8.1のHyper-VにFedora19を入れる作業ログ。
 
 1. インストール開始。minimal installでも238個もパッケージ入るのか。
 
-1. 問題なくインストール終了。
+そして問題なくインストール終了。
 
-1. `ifconfig` そんなコマンドはない。あら。 `yum update` は動くからたぶんネットワークには繋がってると思うけど...
+設定
+----
 
+1.  `ifconfig` そんなコマンドはない。あら。 `yum update` は動くからたぶんネットワークには繋がってると思うけど...
 とりあえず動くようにはなったので、あとは必要なパッケージをyumで追加していきゃいいか。
+
+1. `yum install net-tools` で `ifconfig` が使えるように。
+
+1. なんとなく `yum install yum-plugin-fastestmirror`
+
+1. ホスト名なおす。/etc/hostnameと/etc/hosts
+
+1. IPアドレス固定する。/etc/sysconfig/network-scripts/ifcfg-eth0 に、もともとDHCPで設定してる内容に追記する。 
+
+        BOOTPROTO=none
+        NETMASK=255.255.255.0
+        IPADDR=***ひみつ***
+        USERCTL=no
+
+    既存のに書いてあった `BOOTPROTO="dhcp"` はコメントアウト。
+
+1. sshの公開鍵を設定、ログインできることを確認した上で、sshdはパスワード認証を不許可に。
+
+とりあえずこんなところ...あとは適当に
