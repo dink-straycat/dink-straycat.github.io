@@ -3,7 +3,7 @@ layout: post
 title: "fedora19 on windows8.1 hyper-v"
 description: "Windows 8.1のHyper-VにFedora19を入れる作業ログ"
 category: "memo"
-tags: [hyper-v, fedora]
+tags: [Hyper-V, Fedora]
 ---
 {% include JB/setup %}
 
